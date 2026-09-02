@@ -1,0 +1,1 @@
+Original abstract 3D artwork for a premium animation and illustration studio homepage hero. A surreal sculptural bloom made of translucent lime-green resin ribbons, warm coral clay spheres, and deep forest-green shadow, cinematic art direction, matte texture, subtle film grain, high contrast, elegant editorial composition, no text, no logos, no people. Wide 16:9.

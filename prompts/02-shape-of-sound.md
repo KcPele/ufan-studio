@@ -1,0 +1,1 @@
+Original editorial illustration for a fictional motion-design project named Shape of Sound: a vivid hand-drawn abstract music creature, electric orange and cobalt-blue flowing waveform shapes, soft paper grain, energetic yet refined, premium contemporary animation studio portfolio style, no text, no logos, square composition.
