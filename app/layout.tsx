@@ -2,14 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "THE STUDIO — Creative direction, design & motion",
-  description: "A creative studio building memorable identities, motion and digital worlds.",
+  title: "UFAN — Animation, cartoons & visual worlds",
+  description: "UFAN is an independent animation and image-making studio building memorable visual worlds.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return <html lang="en"><body>{children}</body></html>;
 }
