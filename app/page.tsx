@@ -2,7 +2,27 @@
 
 import { useState } from "react";
 
-const archive = Array.from({ length: 42 }, (_, index) => `/images/ufan-archive/ufan-${String(index + 1).padStart(2, "0")}.webp`);
+const artwork = (number: number) => `/images/ufan-archive/ufan-${String(number).padStart(2, "0")}.webp`;
+const collections = [
+  {
+    id: "ink",
+    label: "Ink & monochrome",
+    note: "Line work, graphite studies and black-and-white illustration.",
+    art: [1, 5, 6, 8, 11, 14, 15, 17, 21, 23, 27, 28, 30, 31, 34, 36, 41, 42],
+  },
+  {
+    id: "worlds",
+    label: "Worlds & atmosphere",
+    note: "Fantasy environments, darker studies and visual-world exploration.",
+    art: [7, 9, 10, 12, 13, 19, 24, 25, 26, 29, 32, 35, 37, 38, 39, 40],
+  },
+  {
+    id: "colour",
+    label: "Colour & character",
+    note: "Vivid characters, cover art and high-colour digital illustration.",
+    art: [2, 3, 4, 16, 18, 20, 22, 33],
+  },
+];
 const frames = [
   { src: "/images/ufan-archive/ufan-24.webp", alt: "UFAN original comic and animation artwork", label: "UFAN ARCHIVE · 01", title: "Original worlds" },
   { src: "/images/ufan-archive/ufan-04.webp", alt: "UFAN Spider-Man comic illustration", label: "UFAN ARCHIVE · 02", title: "Comic-book illustration" },
@@ -17,7 +37,11 @@ const projects = [
 export default function Home() {
   const [frame, setFrame] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeCollection, setActiveCollection] = useState("ink");
+  const [showAllArt, setShowAllArt] = useState(false);
   const active = frames[frame];
+  const collection = collections.find((item) => item.id === activeCollection) ?? collections[0];
+  const visibleArt = showAllArt ? collection.art : collection.art.slice(0, 8);
   return <main>
     <header className="topnav"><div className="container nav-inner"><a className="logo" href="#top" aria-label="UFAN home">UFAN</a><nav className="desktop-nav"><a href="#work">Work</a><a href="#archive">Archive</a><a href="#capabilities">Services</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav><div className="nav-actions"><a className="nav-cta" href="#contact">Start a project ↗</a><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu"><span></span><span></span></button></div></div>{menuOpen && <nav className="mobile-nav"><a href="#work" onClick={() => setMenuOpen(false)}>Work <b>↘</b></a><a href="#archive" onClick={() => setMenuOpen(false)}>Archive <b>↘</b></a><a href="#capabilities" onClick={() => setMenuOpen(false)}>Services <b>↘</b></a><a href="#studio" onClick={() => setMenuOpen(false)}>Studio <b>↘</b></a><a href="#contact" onClick={() => setMenuOpen(false)}>Contact <b>↘</b></a></nav>}</header>
 
@@ -27,7 +51,7 @@ export default function Home() {
 
     <section className="work" id="work"><div className="container"><div className="section-head"><div><p className="eyebrow">Featured archive work</p><h2>Original art with a world behind it.</h2></div><p className="lead">A compact selection from the UFAN archive. The full body of work is directly below in the archive gallery.</p></div><div className="work-board">{projects.map((project) => <article className="work-row" key={project.title}><figure><img src={project.image} alt={`${project.title} artwork by UFAN Studio`}/><span>{project.number}</span></figure><div className="work-row-title"><p className="meta">{project.kind}</p><h3>{project.title}</h3><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div><p className="work-row-copy">{project.description}</p><a className="row-link" href="#archive">Archive ↘</a></article>)}</div></div></section>
 
-    <section className="archive" id="archive"><div className="container"><div className="section-head archive-head"><div><p className="eyebrow">The UFAN archive</p><h2>Original art, collected.</h2></div><p className="lead">42 original UFAN pieces — character designs, comic pages, environment art, portraits, cover concepts and visual experiments from the former studio website.</p></div><div className="archive-grid">{archive.map((src, index) => <figure key={src} className={`archive-item item-${(index % 6) + 1}`}><img src={src} loading="lazy" alt={`UFAN Studio archive artwork ${index + 1}`}/><figcaption>UFAN ARCHIVE / {String(index + 1).padStart(2, "0")}</figcaption></figure>)}</div></div></section>
+    <section className="archive" id="archive"><div className="container"><div className="section-head archive-head"><div><p className="eyebrow">The UFAN archive</p><h2>Original art, collected.</h2></div><p className="lead">Explore UFAN’s work by visual language instead of one endless mixed stream. Each collection is designed as its own small exhibition.</p></div><div className="collection-tabs" role="tablist" aria-label="UFAN art collections">{collections.map((item) => <button key={item.id} role="tab" aria-selected={activeCollection === item.id} className={activeCollection === item.id ? "active" : ""} onClick={() => {setActiveCollection(item.id); setShowAllArt(false);}}><span>{item.label}</span><b>{String(item.art.length).padStart(2, "0")}</b></button>)}</div><div className="collection-intro"><p className="eyebrow">{collection.label}</p><p>{collection.note}</p><span>{visibleArt.length} of {collection.art.length} pieces</span></div><div className="archive-grid collection-grid">{visibleArt.map((number) => <figure key={number} className="archive-item"><img src={artwork(number)} loading="lazy" alt={`UFAN Studio ${collection.label.toLowerCase()} artwork ${number}`}/><figcaption>UFAN / {String(number).padStart(2, "0")}</figcaption></figure>)}</div>{collection.art.length > 8 && <button className="show-more" onClick={() => setShowAllArt(!showAllArt)}>{showAllArt ? "Show selected pieces" : `Show all ${collection.art.length} pieces`} <b>{showAllArt ? "↑" : "↓"}</b></button>}</div></section>
 
     <section className="paper capabilities" id="capabilities"><div className="container capabilities-grid"><div className="capabilities-intro"><p className="eyebrow">What UFAN makes</p><h2>Digital art with no limits on imagination.</h2><p className="lead">Professional creative results across illustration, comic storytelling, 3D work and motion.</p></div><div className="service-list">{[["01", "Comic book illustration", "Comic art, visual storytelling, covers and sequential illustration."],["02", "Digital illustration", "Character design, game design, digital portrait painting and detailed key art."],["03", "Graphic design", "Logos, banners and art-led advertising design."],["04", "3D animation", "3D animation, motion advertising and product design."],["05", "3D modelling", "Models ranging from characters and aliens to interior and exterior building assets."]].map(([n,title,copy]) => <article className="service-row" key={n}><span className="meta">{n}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
 
