@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [{
-    url: "https://studio.kcpele.com",
+    url: "https://ufanstudio.kcpele.com",
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 1,

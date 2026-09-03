@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://studio.kcpele.com/sitemap.xml",
+    sitemap: "https://ufanstudio.kcpele.com/sitemap.xml",
   };
 }

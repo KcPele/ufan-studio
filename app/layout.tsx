@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const siteUrl = "https://studio.kcpele.com";
+const siteUrl = "https://ufanstudio.kcpele.com";
 const title = "UFAN Studio | Comic Art, 2D & 3D Animation";
 const description = "UFAN Studio is a Nigerian creative studio for comic-book illustration, digital art, character design, 2D and 3D animation, motion advertising and visual storytelling.";
 
