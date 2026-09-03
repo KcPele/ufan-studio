@@ -1,0 +1,11 @@
+services:
+  ufan-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ufan-studio:local
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+    ports:
+      - "127.0.0.1:${HOST_PORT:-3101}:3000"

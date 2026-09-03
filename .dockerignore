@@ -1,0 +1,11 @@
+.git
+.github
+.next
+node_modules
+.env
+.env.*
+*.log
+.DS_Store
+pnpm-debug.log*
+coverage
+.hermes
