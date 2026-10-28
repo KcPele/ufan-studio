@@ -1,0 +1,31 @@
+.strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6) var(--space-5);
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-2);
+}
+
+.value {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--color-inverse-muted);
+}
+
+@media (min-width: 800px) {
+  .strip {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

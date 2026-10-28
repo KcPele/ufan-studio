@@ -1,0 +1,29 @@
+.heading {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 56rem;
+  margin-bottom: var(--space-7);
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: var(--text-2xl);
+}
+
+.pageTitle {
+  font-size: var(--text-3xl);
+}
+
+.intro {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-text-muted);
+  max-width: 44rem;
+}

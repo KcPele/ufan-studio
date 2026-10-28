@@ -1,0 +1,20 @@
+.toc {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: var(--text-lg);
+}
+
+.toc a {
+  text-underline-offset: 4px;
+}
+
+.toc a:hover {
+  color: var(--color-accent);
+}
+
+.rows {
+  display: grid;
+  gap: var(--space-3);
+}

@@ -1,0 +1,5 @@
+<!-- Temporary favicon until Ufan supplies a logo. Colours match --color-inverse-bg and --color-accent in styles/tokens.css. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0a0a0a"/>
+  <path d="M18 14h8v22a6 6 0 0 0 12 0V14h8v22a14 14 0 0 1-28 0z" fill="#ff7f52"/>
+</svg>

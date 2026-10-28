@@ -1,0 +1,39 @@
+.intro {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.story {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 40rem;
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+}
+
+.founder {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 52rem;
+}
+
+.founderTitle {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.founderBody {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+}
+
+@media (min-width: 900px) {
+  .intro {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+}

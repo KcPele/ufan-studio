@@ -1,0 +1,55 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.member {
+  display: grid;
+  gap: var(--space-1);
+  align-content: start;
+}
+
+.photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  background: var(--color-placeholder);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.initials {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.name {
+  font-size: var(--text-lg);
+}
+
+.role {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.bio {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

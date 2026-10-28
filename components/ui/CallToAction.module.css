@@ -1,0 +1,22 @@
+.cta {
+  padding-block: var(--section);
+  background: var(--color-surface);
+}
+
+.inner {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  max-width: 16ch;
+}
+
+.body {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+  color: var(--color-text-muted);
+  max-width: 40rem;
+}

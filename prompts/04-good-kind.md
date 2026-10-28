@@ -1,1 +1,0 @@
-Original tactile illustration for a fictional packaging and brand project named The Good Kind: sculptural green fruit-like forms and cream ceramic vessels arranged as a playful still life, modern editorial art direction, soft studio light, premium design studio portfolio, no text, no logos, square composition.

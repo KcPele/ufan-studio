@@ -1,99 +1,86 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { services } from "@/content/services";
+import { site } from "@/content/site";
 import "./globals.css";
 
-const siteUrl = "https://ufanstudio.kcpele.com";
-const title = "UFAN Studio | Comic Art, 2D & 3D Animation";
-const description = "UFAN Studio is a Nigerian creative studio for comic-book illustration, digital art, character design, 2D and 3D animation, motion advertising and visual storytelling.";
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+
+const title = `${site.name} | Comics, Illustration and Animation`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(site.url),
   title: {
     default: title,
-    template: "%s | UFAN Studio",
+    template: `%s | ${site.name}`,
   },
-  description,
+  description: site.description,
   keywords: [
-    "UFAN Studio",
-    "comic book illustration",
-    "digital illustration Nigeria",
-    "2D animation Nigeria",
-    "3D animation Nigeria",
+    "comic production studio",
+    "sequential art",
+    "illustration studio Nigeria",
+    "animation studio Abuja",
     "character design",
-    "comic artist Nigeria",
-    "motion design Nigeria",
-    "animation studio Jos",
-    "African storytelling",
+    "visual development",
+    "storyboards",
+    "educational comics",
   ],
-  authors: [{ name: "UFAN Studio" }],
-  creator: "UFAN Studio",
-  publisher: "UFAN Studio",
-  alternates: {
-    canonical: "/",
-  },
+  authors: [{ name: site.name }],
+  creator: site.name,
+  publisher: site.name,
   category: "Animation and Illustration Studio",
   openGraph: {
     type: "website",
-    locale: "en_NG",
+    locale: "en_GB",
     url: "/",
-    siteName: "UFAN Studio",
+    siteName: site.name,
     title,
-    description,
-    images: [{
-      url: "/images/ufan/ufan-showreel-world.png",
-      width: 1672,
-      height: 941,
-      alt: "UFAN Studio comic art and animation world",
-    }],
+    description: site.description,
+    // Share image: app/opengraph-image.jpg (+ .alt.txt), picked up automatically.
   },
   twitter: {
     card: "summary_large_image",
     title,
-    description,
-    images: ["/images/ufan/ufan-showreel-world.png"],
+    description: site.description,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: { index: true, follow: true },
 };
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "UFAN Studio",
-  url: siteUrl,
-  logo: `${siteUrl}/images/ufan/ufan-showreel-world.png`,
-  image: `${siteUrl}/images/ufan/ufan-showreel-world.png`,
-  description,
-  email: "ultrafantasycomics@gmail.com",
-  telephone: "+2348141171367",
+  name: site.name,
+  url: site.url,
+  image: `${site.url}/opengraph-image.jpg`,
+  description: site.description,
+  email: site.email,
+  foundingDate: String(site.founded),
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Jos",
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
     addressCountry: "NG",
   },
-  founders: [
-    { "@type": "Person", name: "Ebenezer Akeju" },
-    { "@type": "Person", name: "Emmanuel James" },
-  ],
-  knowsAbout: [
-    "Comic book illustration",
-    "Digital illustration",
-    "Character design",
-    "2D animation",
-    "3D animation",
-    "3D modelling",
-    "Motion advertising",
-  ],
+  sameAs: [site.instagram.url],
+  founder: { "@type": "Person", name: "Ebenezer Akeju" },
+  knowsAbout: services.map((service) => service.title),
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} /></body></html>;
+  return (
+    <html lang="en-GB" className={inter.variable}>
+      <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      </body>
+    </html>
+  );
 }

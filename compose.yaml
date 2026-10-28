@@ -5,6 +5,9 @@ services:
       dockerfile: Dockerfile
     image: ufan-studio:local
     restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
     environment:
       NODE_ENV: production
     ports:

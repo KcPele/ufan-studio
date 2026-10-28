@@ -1,0 +1,29 @@
+.layout {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.details {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.details dt {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.details dd {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-8);
+  }
+}

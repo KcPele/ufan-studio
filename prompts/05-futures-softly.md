@@ -1,1 +1,0 @@
-Original futuristic illustration for a fictional 3D art-direction project named Futures, Softly: pearlescent coral and blush cloud forms floating in a dark emerald space, tactile 3D render with gentle film grain, hopeful and sophisticated, premium animation studio portfolio style, no text, no logos, square composition.

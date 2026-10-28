@@ -1,0 +1,15 @@
+.prose {
+  display: grid;
+  gap: var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.prose h2 {
+  margin-top: var(--space-5);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+}
+
+.prose a {
+  color: var(--color-accent);
+}

@@ -1,65 +1,54 @@
-"use client";
+import { Hero } from "@/components/home/Hero";
+import { ServiceBlocks } from "@/components/home/ServiceBlocks";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import type { Metadata } from "next";
+import { CallToAction } from "@/components/ui/CallToAction";
+import { Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { StripGallery, type StripItem } from "@/components/ui/StripGallery";
+import { TextLink } from "@/components/ui/TextLink";
+import { caseStudies } from "@/content/case-studies";
+import { heroImages } from "@/content/images";
+import { services } from "@/content/services";
+import { homeHeadline, trustStats } from "@/content/studio";
+import styles from "./home.module.css";
 
-import { useState } from "react";
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
-const artwork = (number: number) => `/images/ufan-archive/ufan-${String(number).padStart(2, "0")}.webp`;
-const collections = [
-  {
-    id: "ink",
-    label: "Ink & monochrome",
-    note: "Line work, graphite studies and black-and-white illustration.",
-    art: [1, 5, 6, 8, 11, 14, 15, 17, 21, 23, 27, 28, 30, 31, 34, 36, 41, 42],
-  },
-  {
-    id: "worlds",
-    label: "Worlds & atmosphere",
-    note: "Fantasy environments, darker studies and visual-world exploration.",
-    art: [7, 9, 10, 12, 13, 19, 24, 25, 26, 29, 32, 35, 37, 38, 39, 40],
-  },
-  {
-    id: "colour",
-    label: "Colour & character",
-    note: "Vivid characters, cover art and high-colour digital illustration.",
-    art: [2, 3, 4, 16, 18, 20, 22, 33],
-  },
-];
-const frames = [
-  { src: "/images/ufan-archive/ufan-24.webp", alt: "UFAN original comic and animation artwork", label: "UFAN ARCHIVE · 01", title: "Original worlds" },
-  { src: "/images/ufan-archive/ufan-04.webp", alt: "UFAN Spider-Man comic illustration", label: "UFAN ARCHIVE · 02", title: "Comic-book illustration" },
-  { src: "/images/ufan-archive/ufan-26.webp", alt: "UFAN Kirin Castle illustration", label: "UFAN ARCHIVE · 03", title: "Kirin Castle" },
-];
-const projects = [
-  { number: "01", title: "Spider-Man", kind: "COMIC BOOK ILLUSTRATION", image: "/images/ufan-archive/ufan-04.webp", tags: ["Comic art", "Digital illustration", "Character art"], description: "A UFAN comic-book illustration from the studio archive — character-led image-making with strong silhouette, mood and visual storytelling." },
-  { number: "02", title: "Smoke", kind: "DIGITAL ILLUSTRATION", image: "/images/ufan-archive/ufan-25.webp", tags: ["Digital art", "Visual development", "Key art"], description: "A detailed digital art piece that shows the studio’s ability to build atmosphere, texture and a distinct visual point of view." },
-  { number: "03", title: "Kirin Castle", kind: "FANTASY WORLD BUILDING", image: "/images/ufan-archive/ufan-26.webp", tags: ["Fantasy art", "Environment design", "Illustration"], description: "Fantasy imagery and environment work from the UFAN archive — a glimpse of the worlds the studio wants to keep bringing to life." },
-];
+const featuredWork: StripItem[] = caseStudies.slice(0, 4).map((study) => ({
+  ...study.images[0],
+  title: study.title,
+  label: study.category,
+  caption: study.client,
+  href: `/work#${study.slug}`,
+  linkText: "View case study",
+}));
 
-export default function Home() {
-  const [frame, setFrame] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeCollection, setActiveCollection] = useState("ink");
-  const [showAllArt, setShowAllArt] = useState(false);
-  const active = frames[frame];
-  const collection = collections.find((item) => item.id === activeCollection) ?? collections[0];
-  const visibleArt = showAllArt ? collection.art : collection.art.slice(0, 8);
-  return <main>
-    <header className="topnav"><div className="container nav-inner"><a className="logo" href="#top" aria-label="UFAN home">UFAN</a><nav className="desktop-nav"><a href="#work">Work</a><a href="#archive">Archive</a><a href="#capabilities">Services</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav><div className="nav-actions"><a className="nav-cta" href="#contact">Start a project ↗</a><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle menu"><span></span><span></span></button></div></div>{menuOpen && <nav className="mobile-nav"><a href="#work" onClick={() => setMenuOpen(false)}>Work <b>↘</b></a><a href="#archive" onClick={() => setMenuOpen(false)}>Archive <b>↘</b></a><a href="#capabilities" onClick={() => setMenuOpen(false)}>Services <b>↘</b></a><a href="#studio" onClick={() => setMenuOpen(false)}>Studio <b>↘</b></a><a href="#contact" onClick={() => setMenuOpen(false)}>Contact <b>↘</b></a></nav>}</header>
+export default function HomePage() {
+  return (
+    <>
+      <Hero title={homeHeadline.title} intro={homeHeadline.intro} images={heroImages} />
 
-    <section className="hero" id="top"><div className="reel-stage"><img className="reel-image" src={active.src} alt={active.alt}/><div className="reel-wash"></div><div className="reel-copy"><p className="eyebrow">Comic art · 2D &amp; 3D animation · Visual worlds</p><h1>We build worlds <em>worth watching.</em></h1><p className="lead hero-lead">UFAN Studio is a comic-book illustration and 2D/3D animation studio. We make digital art, characters and African stories with imagination at their centre.</p><div className="hero-actions"><a className="btn primary" href="#work">Explore the work</a><a className="btn secondary" href="#contact">Tell us your idea</a></div></div><button className="reel-play" aria-label="Advance featured artwork" onClick={() => setFrame((frame + 1) % frames.length)}>Play</button><div className="reel-corner"><p>{active.label}</p><strong>{active.title}</strong></div><span className="scroll-cue">Scroll to enter UFAN ↓</span><div className="reel-progress">{frames.map((item, index) => <button key={item.title} aria-label={`Show ${item.title}`} className={frame === index ? "active" : ""} onClick={() => setFrame(index)} />)}</div></div></section>
+      <Section tone="inverse" label="Studio credentials">
+        <TrustStrip stats={trustStats} />
+      </Section>
 
-    <section className="studio-statement" id="studio"><div className="container statement-grid"><div><p className="eyebrow">UFAN / The studio</p><span className="meta">Comic art · Animation · African stories</span></div><div><h2>Stories with <em>culture, character and imagination</em> at their roots.</h2><div className="statement-notes"><p>Our mission is to enlighten through beautifully represented art, celebrating the richness of uniquely diverse storytelling and empowering young and established artists.</p><p>Co-founders <strong>Ebenezer Akeju</strong> and <strong>Emmanuel James</strong> created UFAN to tell African stories — superhero, fantasy and beyond — through comic books, digital illustration and 3D animation.</p></div></div></div></section>
+      <Section>
+        <SectionHeading eyebrow="Selected work" title="Finished projects for real clients." />
+        <StripGallery items={featuredWork} label="Featured case studies" />
+        <p className={styles.more}>
+          <TextLink href="/work">See every case study and the full gallery</TextLink>
+        </p>
+      </Section>
 
-    <section className="work" id="work"><div className="container"><div className="section-head"><div><p className="eyebrow">Featured archive work</p><h2>Original art with a world behind it.</h2></div><p className="lead">A compact selection from the UFAN archive. The full body of work is directly below in the archive gallery.</p></div><div className="work-board">{projects.map((project) => <article className="work-row" key={project.title}><figure><img src={project.image} alt={`${project.title} artwork by UFAN Studio`}/><span>{project.number}</span></figure><div className="work-row-title"><p className="meta">{project.kind}</p><h3>{project.title}</h3><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div><p className="work-row-copy">{project.description}</p><a className="row-link" href="#archive">Archive ↘</a></article>)}</div></div></section>
+      <Section>
+        <SectionHeading eyebrow="What we do" title="Three disciplines, one production team." />
+        <ServiceBlocks services={services.filter((service) => service.featured)} />
+      </Section>
 
-    <section className="archive" id="archive"><div className="container"><div className="section-head archive-head"><div><p className="eyebrow">The UFAN archive</p><h2>Original art, collected.</h2></div><p className="lead">Explore UFAN’s work by visual language instead of one endless mixed stream. Each collection is designed as its own small exhibition.</p></div><div className="collection-tabs" role="tablist" aria-label="UFAN art collections">{collections.map((item) => <button key={item.id} role="tab" aria-selected={activeCollection === item.id} className={activeCollection === item.id ? "active" : ""} onClick={() => {setActiveCollection(item.id); setShowAllArt(false);}}><span>{item.label}</span><b>{String(item.art.length).padStart(2, "0")}</b></button>)}</div><div className="collection-intro"><p className="eyebrow">{collection.label}</p><p>{collection.note}</p><span>{visibleArt.length} of {collection.art.length} pieces</span></div><div className="archive-grid collection-grid">{visibleArt.map((number) => <figure key={number} className="archive-item"><img src={artwork(number)} loading="lazy" alt={`UFAN Studio ${collection.label.toLowerCase()} artwork ${number}`}/><figcaption>UFAN / {String(number).padStart(2, "0")}</figcaption></figure>)}</div>{collection.art.length > 8 && <button className="show-more" onClick={() => setShowAllArt(!showAllArt)}>{showAllArt ? "Show selected pieces" : `Show all ${collection.art.length} pieces`} <b>{showAllArt ? "↑" : "↓"}</b></button>}</div></section>
-
-    <section className="paper capabilities" id="capabilities"><div className="container capabilities-grid"><div className="capabilities-intro"><p className="eyebrow">What UFAN makes</p><h2>Digital art with no limits on imagination.</h2><p className="lead">Professional creative results across illustration, comic storytelling, 3D work and motion.</p></div><div className="service-list">{[["01", "Comic book illustration", "Comic art, visual storytelling, covers and sequential illustration."],["02", "Digital illustration", "Character design, game design, digital portrait painting and detailed key art."],["03", "Graphic design", "Logos, banners and art-led advertising design."],["04", "3D animation", "3D animation, motion advertising and product design."],["05", "3D modelling", "Models ranging from characters and aliens to interior and exterior building assets."]].map(([n,title,copy]) => <article className="service-row" key={n}><span className="meta">{n}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
-
-    <section className="paper process"><div className="container"><div className="process-head"><div><p className="eyebrow">How we make it</p><h2>From an idea on paper to a world on screen.</h2></div><p className="lead">Whether you arrive with a comic-book concept, character sketch, product or story world, we shape the right visual route from first reference to finished delivery.</p></div><div className="process-track">{[["01 · Discover","Find the story","Understand the character, audience, medium and world behind the request."],["02 · Visualise","Build the direction","Create the visual language, references, sketches and first key frames."],["03 · Develop","Bring it to life","Illustrate, model, animate and refine the details that make the work feel real."],["04 · Finish","Prepare the final world","Deliver polished artwork, motion assets and the formats needed to share the story."]].map(([n,title,copy]) => <article className="process-step" key={n}><span className="meta">{n}</span><h3>{title}</h3><p>{copy}</p></article>)}</div></div></section>
-
-    <section className="media"><div className="container media-grid"><div><p className="eyebrow">UFAN visual library</p><h2>More stories are ready to be seen.</h2><p className="lead">The gallery is built to grow with new comics, animation tests, showreels, process films, 3D experiments and African fantasy worlds.</p></div><div className="media-list">{frames.map((item, index) => <button className="media-item" onClick={() => {setFrame(index); document.querySelector("#top")?.scrollIntoView({behavior:"smooth"})}} key={item.title}><img src={item.src} alt=""/><span><b>{item.title}</b><small>{index === 0 ? "Original UFAN artwork" : index === 1 ? "Comic book illustration" : "Fantasy environment illustration"}</small></span><i>View ↗</i></button>)}</div></div></section>
-
-    <section className="contact" id="contact"><div className="container"><p className="eyebrow">New projects · Partnerships · Collaborations</p><h2>Have a world in mind?</h2><p className="lead">Let’s talk about the comic, character, animation, illustration or visual story you want to bring to life.</p><a className="btn primary" href="mailto:ultrafantasycomics@gmail.com">Start a project</a><div className="contact-grid"><div><span className="meta">Email</span><span>ultrafantasycomics@gmail.com</span></div><div><span className="meta">Call</span><span>0814 117 1367 · 0706 455 8950</span></div><div><span className="meta">Studio</span><span>Jos, Nigeria</span></div></div></div></section>
-    <footer><div className="container foot-inner"><span>© 2026 UFAN Studio</span><span>Original UFAN archive migrated from the former studio website.</span></div></footer>
-  </main>;
+      <CallToAction />
+    </>
+  );
 }

@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
+import { nav, site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{
-    url: "https://ufanstudio.kcpele.com",
+  const paths = ["", ...nav.map((item) => item.href), "/privacy"];
+  return paths.map((path) => ({
+    url: `${site.url}${path}`,
     lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1,
-  }];
+    changeFrequency: "monthly",
+    priority: path === "" ? 1 : 0.7,
+  }));
 }

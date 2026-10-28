@@ -1,1 +1,0 @@
-Original cinematic 3D illustration for a fictional creative campaign named After Hours: glowing cobalt-blue city shapes and a single red-orange moon, bold graphic silhouettes, atmospheric night lighting, elegant surreal motion-design still, art-directed, no text, no logos, square composition.

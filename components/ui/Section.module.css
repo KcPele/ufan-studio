@@ -1,0 +1,17 @@
+.section {
+  padding-block: var(--section);
+}
+
+.default {
+  background: var(--color-bg);
+}
+
+.surface {
+  background: var(--color-surface);
+}
+
+.inverse {
+  border-block: 1px solid var(--color-inverse-border);
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+}
