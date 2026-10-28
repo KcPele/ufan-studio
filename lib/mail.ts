@@ -1,8 +1,8 @@
 import "server-only";
 import nodemailer from "nodemailer";
 
-// SMTP settings come from the environment (see .env.example). Use the
-// mailbox provider that hosts studio@ufanstudio.com (Zoho, Google Workspace…).
+// SMTP settings come from the environment (see .env.example). Currently
+// the Brevo relay; port 587 upgrades to TLS with STARTTLS, 465 is TLS from the start.
 
 function getTransport() {
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;

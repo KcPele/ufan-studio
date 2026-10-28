@@ -70,7 +70,7 @@ public/images/          ufan/ (hero PNGs), ufan-archive/ (portfolio webp)
 
 ## Environment
 
-See `.env.example`. Contact form needs `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (mailbox hosting studio@ufanstudio.com). Optional `SMTP_FROM`, `CONTACT_TO`, `NEXT_PUBLIC_SITE_URL` (defaults to https://ufanstudio.com). Without SMTP the form shows an error telling the visitor to email directly. The brief requires the form to be tested end-to-end and shown working before launch.
+See `.env.example`. Contact form sends through the Brevo SMTP relay (`smtp-relay.brevo.com:587`; `SMTP_PASS` is a Brevo SMTP key; `SMTP_FROM` must be on the Brevo-verified `ufanstudio.com` domain). Delivery to studio@ufanstudio.com was tested end-to-end on 28 Oct 2026. Production is on Vercel, so set the same variables in Vercel's Environment Variables, not just `.env`. Needs `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`. Optional `SMTP_FROM`, `CONTACT_TO`, `NEXT_PUBLIC_SITE_URL` (defaults to https://ufanstudio.com). Without SMTP the form shows an error telling the visitor to email directly. The brief requires the form to be tested end-to-end and shown working before launch.
 
 ## Content still to replace (marked `PLACEHOLDER` in `content/`)
 
